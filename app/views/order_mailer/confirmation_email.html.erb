@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          padding: 20px;
+          color: #333;
+      }
+      .container {
+          background-color: white;
+          padding: 20px;
+          border-radius: 8px;
+          max-width: 600px;
+          margin: auto;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+          color: #4CAF50;
+      }
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+      }
+      th, td {
+          text-align: left;
+          padding: 8px;
+          border-bottom: 1px solid #ddd;
+      }
+      .footer {
+          margin-top: 30px;
+          font-size: 0.9em;
+          color: #777;
+          text-align: center;
+      }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <h2>Thank you for your order, <%= @user.username %>!</h2>
+
+  <p>Your order <strong>#<%= @order.id %></strong> has been successfully placed.</p>
+
+  <p><strong>Order Summary:</strong></p>
+  <table>
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Unit Price</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td>$<%= '%.2f' % item.product.price %></td>
+        <td>$<%= '%.2f' % (item.quantity * item.product.price) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <p><strong>Total Price:</strong> $<%= '%.2f' % @order.total_price %></p>
+
+  <div class="footer">
+    <p>If you have any questions, feel free to reply to this email.</p>
+    <p>Thank you for shopping with us!</p>
+  </div>
+</div>
+</body>
+</html>

@@ -20,7 +20,7 @@ module Api
       private
 
       def login_params
-        params.permit(:username, :password)
+        params.permit(:username, :password, :email)
       end
 
       def handle_record_not_found(e)

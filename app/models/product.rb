@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favourites, dependent: :destroy
+  has_many :favourite_by_users, through: :favourites, source: :user
   has_many :cart_items
   has_many :carts, through: :cart_items
 
