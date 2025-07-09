@@ -30,8 +30,13 @@ class User < ApplicationRecord
   end
 
   def confirm_email!
-    update!(confirmation_token: nil, confirmed_at: Time.current)
+    update!(
+      confirmation_token: nil,
+      confirmed_at: Time.current,
+      email_confirmed: true
+    )
   end
+
 
   def email_confirmed?
     confirmed_at.present?
