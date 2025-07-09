@@ -7,13 +7,18 @@ module Api
       def confirm_email
         user = User.find_by(confirmation_token: params[:token])
 
-        if user && !user.email_confirmed? && user.confirmation_sent_at >= 2.hours.ago
-          user.confirm_email!
-          render plain: "Your email has been confirmed successfully!"
+        if user && !user.email_confirmed?
+          user.update!(
+            email_confirmed: true,
+            confirmation_token: nil,
+            confirmed_at: Time.current
+          )
+          render plain: "Your email has been confirmed!"
         else
-          render plain: "Invalid or expired confirmation link", status: :unprocessable_entity
+          render plain: "Invalid or already confirmed", status: :unprocessable_entity
         end
       end
+
 
 
       def resend
