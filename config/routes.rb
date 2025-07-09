@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       resources :cart_items, only: [ :create, :update, :destroy ]
       resources :favourites, only: [ :index, :create, :destroy ]
       resources :orders, only: [ :index, :create ]
+      post "password/forgot", to: "password_resets#create"
+      post "password/reset", to: "password_resets#update"
+      get "/confirm-email", to: "confirmations#confirm_email"
+      post "resend-confirmation", to: "confirmations#resend"
     end
   end
 

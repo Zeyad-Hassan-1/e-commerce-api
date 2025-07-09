@@ -31,3 +31,4 @@ User.create!(
   bio: "Admin user",
   admin: true
 )
+# eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.xLdYy7KVuwtZvpe97BJQH7n0QKcO_euVSR2-l0-f_6Y

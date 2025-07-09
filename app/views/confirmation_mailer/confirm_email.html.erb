@@ -1,0 +1,8 @@
+<h2>Confirm Your Email</h2>
+<p>Hello <%= @user.username %>,</p>
+<p>Click the link below to confirm your email:</p>
+<p>
+  <a href="http://localhost:3000/api/v1/confirm-email?token=<%= @token %>">
+    Confirm Email
+  </a>
+</p>

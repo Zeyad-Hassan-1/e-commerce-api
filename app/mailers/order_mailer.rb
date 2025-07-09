@@ -9,6 +9,5 @@ class OrderMailer < ApplicationMailer
       to: @user.email,
       subject: "Your Order ##{@order.id} has been placed"
     )
-
   end
 end

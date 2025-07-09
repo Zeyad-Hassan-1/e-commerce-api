@@ -5,7 +5,11 @@ module Api
       rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_record
 
       def create
-        user = User.create!(user_params)
+        user = User.create!(user_params) # before_create runs automatically and sets confirmation_token
+
+        # Send email with the generated token
+        ConfirmationMailer.with(user: user).confirm_email.deliver_now
+
         @token = encode_token(user_id: user.id)
         render json: {
           user: UserSerializer.new(user),
@@ -13,8 +17,20 @@ module Api
         }, status: :created
       end
 
+
       def me
         render json: current_user, status: :ok
+      end
+
+      def confirm_email
+        user = User.find_by(confirmation_token: params[:token])
+
+        if user && user.confirmed_at.nil?
+          user.update(confirmed_at: Time.current, confirmation_token: nil)
+          render json: { message: "Email confirmed successfully!" }, status: :ok
+        else
+          render json: { error: "Invalid or expired token" }, status: :unprocessable_entity
+        end
       end
 
       private
