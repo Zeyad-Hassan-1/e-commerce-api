@@ -53,8 +53,8 @@ group :development, :test do
 
   gem "dotenv-rails"
 
-  gem 'rswag'
-  gem 'rspec-rails'
+  gem "rswag"
+  gem "rspec-rails"
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
