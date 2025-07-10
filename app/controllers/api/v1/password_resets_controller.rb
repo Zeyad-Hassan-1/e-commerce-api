@@ -2,7 +2,7 @@ class Api::V1::PasswordResetsController < ApplicationController
   skip_before_action :authorized
 
   def create
-    user = User.find_by(username: params[:email])
+    user = User.find_by(email: params[:email])
     if user
       user.generate_password_reset_token!
       UserMailer.with(user: user).reset_password_email.deliver_now

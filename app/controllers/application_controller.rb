@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :authorized
+  before_action :authorized, except: [ :route_not_found ]
 
   def encode_token(payload)
     JWT.encode(payload, ENV["JWT_SECRET"])
@@ -32,5 +32,19 @@ class ApplicationController < ActionController::API
 
   def authorize_admin
     render json: { error: "Forbidden" }, status: :forbidden unless @current_user&.admin?
+  end
+
+  rescue_from ActionController::RoutingError, with: :handle_routing_error
+
+  def route_not_found
+    raise ActionController::RoutingError, "Not Found"
+  end
+
+  private
+
+  def handle_routing_error
+    render json: {
+      message: "This link is not directly accessible. Please copy the token from the URL and use it in the reset password form."
+    }, status: :not_found
   end
 end
