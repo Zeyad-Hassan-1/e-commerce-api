@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   user: one
   product: one
+  rating: 5
+  comment: Great product, very comfortable!
 
 two:
   user: two
   product: two
+  rating: 4
+  comment: Good quality, but slightly expensive

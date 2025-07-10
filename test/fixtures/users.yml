@@ -1,0 +1,9 @@
+one:
+  username: user1
+  password_digest: <%= BCrypt::Password.create('password123') %>
+  bio: This is user one's bio
+
+two:
+  username: user2
+  password_digest: <%= BCrypt::Password.create('password456') %>
+  bio: This is user two's bio

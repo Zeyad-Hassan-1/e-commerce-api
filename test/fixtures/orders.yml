@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   user: one
-  status: MyString
-  total_price: 1.5
+  status: pending
+  total_price: 29.99
 
 two:
   user: two
-  status: MyString
-  total_price: 1.5
+  status: completed
+  total_price: 79.99

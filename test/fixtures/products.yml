@@ -1,19 +1,18 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyText
-  description: MyText
-  price: 1.5
-  colors: 
-  imgs: 
-  sizes: 
-  categories: 
+  name: Classic T-Shirt
+  description: A comfortable cotton t-shirt
+  price: 29.99
+  colors: <%= { available: ['black', 'white', 'gray'] }.to_json %>
+  sizes: <%= { available: ['S', 'M', 'L', 'XL'] }.to_json %>
+  images: <%= { main: 'tshirt1.jpg', thumbnails: ['thumb1.jpg', 'thumb2.jpg'] }.to_json %>
+  categories: <%= { main: 'clothing', sub: ['t-shirts', 'basics'] }.to_json %>
 
 two:
-  name: MyText
-  description: MyText
-  price: 1.5
-  colors: 
-  imgs: 
-  sizes: 
-  categories: 
+  name: Denim Jeans
+  description: Classic blue jeans
+  price: 79.99
+  colors: <%= { available: ['blue', 'black'] }.to_json %>
+  sizes: <%= { available: ['30x32', '32x32', '34x32'] }.to_json %>
+  images: <%= { main: 'jeans1.jpg', thumbnails: ['thumb1.jpg', 'thumb2.jpg'] }.to_json %>
+  categories: <%= { main: 'clothing', sub: ['pants', 'denim'] }.to_json %>
